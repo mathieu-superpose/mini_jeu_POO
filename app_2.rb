@@ -2,8 +2,8 @@ require 'pry'
 require 'bundler'
 Bundler.require
 
-require_relative 'lib/game'
-require_relative 'lib/player'
+#require_relative 'lib/game'
+require_relative 'lib/player_2'
 
 puts ""
 puts "    -------------------------------------------------"
@@ -20,7 +20,7 @@ puts "    | la guerre dans la maison de retraite!         |"
 puts "    -------------------------------------------------"
 puts ""
 puts ""
-print "    Quel est le nom de votre blaze de vieux? > "
+print "    Quel est votre blaze de vieux? > "
 humanplayer = HumanPlayer.new(gets.chomp.gsub(/[^a-z]/i, '').capitalize)
 puts ""
 puts ""
@@ -58,12 +58,12 @@ while player1.life_points > 0 || player2.life_points > 0 && humanplayer.life_poi
 	puts gets.chomp
 	puts "     Quelle action veux-tu effectuer ?"
 	puts ""
-	puts " attaquer un joueur en vue :"
+	puts " attaquer un vieux :"
 	puts " 1 - #{player1.name} a #{player1.life_points} points de vie" if player1.life_points > 0
 	puts " 2 - #{player2.name} a #{player2.life_points} points de vie" if player2.life_points > 0
 	puts ""
 	puts " a - chercher une meilleur moyen de saccage"
-	puts " s - chercher à se requinquer"
+	puts " s - se requinquer"
 	print "    >"
 	choice = ""
 
@@ -88,10 +88,10 @@ while player1.life_points > 0 || player2.life_points > 0 && humanplayer.life_poi
 	case choice
 	when "1"
 		puts humanplayer.attacks(player1)
-		abort("  Démolis! Fini de jouer! Tu peux ronfler tranquil devant Drucker !") if (player1.life_points <= 0 && player2.life_points <= 0)
+		abort("  Du champs! Fini de jouer, bande de grabataires!\n    Enfin tu peux ronfler tranquil devant Drucker !") if (player1.life_points <= 0 && player2.life_points <= 0)
 	when "2"
 		puts humanplayer.attacks(player2)
-		abort("  Démolis! Fini de jouer! Tu peux ronfler tranquil devant Drucker !") if (player1.life_points <= 0 && player2.life_points <= 0)
+		abort("  Du champs! Fini de jouer, bande de grabataires!\n    Enfin tu peux ronfler tranquil devant Drucker !") if (player1.life_points <= 0 && player2.life_points <= 0)
 	when "a"
 		puts humanplayer.search_weapon
 	when "s"
