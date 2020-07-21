@@ -27,7 +27,8 @@ puts ""
 player1 = Ennemi.new("Josiane")
 player2 = Ennemi.new("José")
 puts " Vous allez vous affronter aujourd'hui contre un satané"
-print " couple qui monopolise la télécommande de la salle commune"
+puts " couple qui monopolise la télécommande de la salle commune"
+print" avec une rediffusion d'Amour, Gloire et Beauté"
 puts gets.chomp
 print " Ils sont corriaces mais pas si costauds"
 puts gets.chomp
@@ -56,48 +57,51 @@ while player1.life_points > 0 || player2.life_points > 0 && humanplayer.life_poi
 	puts "                      Tour #{round}"
 	puts "     -------------------------------------------------"
 	puts gets.chomp
-	puts "     Quelle action veux-tu effectuer ?"
+	puts "     Que veux-tu faire ?"
 	puts ""
-	puts " attaquer un vieux :"
+	puts " > Attaquer un des vieux :"
 	puts " 1 - #{player1.name} a #{player1.life_points} points de vie" if player1.life_points > 0
 	puts " 2 - #{player2.name} a #{player2.life_points} points de vie" if player2.life_points > 0
 	puts ""
-	puts " a - chercher une meilleur moyen de saccage"
-	puts " s - se requinquer"
-	print "    >"
+	puts " a - Chercher une meilleur moyen de saccage"
+	puts " s - Te requinquer"
 	choice = ""
 
 	if player1.life_points > 0 && player2.life_points > 0
 		until choice == "a" || choice == "s" || choice == "1" || choice == "2"
-			puts choice = gets.chomp.to_s
+			print "    >"
+			choice = gets.chomp.to_s
 		end
 	elsif player1.life_points > 0 && player2.life_points <= 0
 		until choice == "a" || choice == "s" || choice == "1"
-			puts choice = gets.chomp.to_s
+			print "    >"
+			choice = gets.chomp.to_s
 		end
 	elsif player2.life_points > 0 && player1.life_points <= 0
 		until choice == "a" || choice == "s" || choice == "2"
-			puts choice = gets.chomp.to_s
+			print "    >"
+			choice = gets.chomp.to_s
 		end
 	else
 		until choice == "a" || choice == "s" || choice == "1" || choice == "2"
-			puts choice = gets.chomp.to_s
+			print "    >"
+			choice = gets.chomp.to_s
 		end
 	end
 
 	case choice
 	when "1"
-		puts humanplayer.attacks(player1)
+		humanplayer.attacks(player1)
 		abort("  Du champs! Fini de jouer, bande de grabataires!\n    Enfin tu peux ronfler tranquil devant Drucker !") if (player1.life_points <= 0 && player2.life_points <= 0)
 	when "2"
-		puts humanplayer.attacks(player2)
+		humanplayer.attacks(player2)
 		abort("  Du champs! Fini de jouer, bande de grabataires!\n    Enfin tu peux ronfler tranquil devant Drucker !") if (player1.life_points <= 0 && player2.life_points <= 0)
 	when "a"
-		puts humanplayer.search_weapon
+		humanplayer.search_weapon
 	when "s"
-		puts humanplayer.search_health_pack
+		humanplayer.search_health_pack
 	else
-		puts "Pépé, t'as grillé une étape !"
+		"Pépé, t'as grillé une étape !"
 	end
 
 	puts "C'est l'heure de la risposte !"
